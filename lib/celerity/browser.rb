@@ -682,11 +682,11 @@ module Celerity
     #
 
     def css=(bool)
-      @webclient.cssEnabled = bool
+      @webclient.getOptions().setCssEnabled(bool)
     end
 
     def css
-      @webclient.cssEnabled
+      @webclient.getOptions().isCssEnabled
     end
 
     def refresh_handler=(symbol)
