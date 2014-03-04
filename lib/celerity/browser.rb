@@ -32,7 +32,7 @@ module Celerity
     #
     # @see Celerity::Container for an introduction to the main API.
     #
-    # @option opts :browser [:internet_explorer, :firefox, :firefox3] (:firefox3) Set the BrowserVersion used by HtmlUnit. Defaults to Firefox 3.
+    # @option opts :browser [:internet_explorer, :firefox, :firefox17] (:firefox17) Set the BrowserVersion used by HtmlUnit. Defaults to Firefox 17.
     # @option opts :charset [String] ("UTF-8") Specify the charset that webclient will use for requests.
     # @option opts :css [Boolean] (true) Enable/disable CSS.  Enabled by default.
     # @option opts :ignore_pattern [Regexp] See Browser#ignore_pattern=
@@ -828,17 +828,19 @@ module Celerity
     #
 
     def setup_webclient(opts)
-      browser = (opts.delete(:browser) || :firefox3).to_sym
+      browser = (opts.delete(:browser) || :firefox17).to_sym
 
       browser_version = case browser
                         when :chrome
                           ::HtmlUnit::BrowserVersion::CHROME
-                        when :firefox, :ff
+                        when :firefox, :ff, :firefox17
                           ::HtmlUnit::BrowserVersion::FIREFOX_17
                         when :internet_explorer_8, :ie8
                           ::HtmlUnit::BrowserVersion::INTERNET_EXPLORER_8
                         when :internet_explorer_9, :ie9
                           ::HtmlUnit::BrowserVersion::INTERNET_EXPLORER_9
+                        when :internet_explorer_10, :ie10, :internet_explorer, :ie
+                          ::HtmlUnit::BrowserVersion::INTERNET_EXPLORER_10
                         else
                           raise ArgumentError, "unknown browser: #{browser.inspect}"
                         end
