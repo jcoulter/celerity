@@ -404,7 +404,7 @@ module Celerity
         case key
         when "{TAB}"
           @page.tabToNextElement
-        when /\w/
+          when /\w/
           element.type(key)
         else
           raise NotImplementedError

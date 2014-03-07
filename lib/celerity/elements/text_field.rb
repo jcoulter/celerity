@@ -132,7 +132,8 @@ module Celerity
     private
 
     def type_string(value)
-      java.lang.String.new(value.to_java_bytes, @browser.page.getPageEncoding).toCharArray.each do |char|
+      value.split("").each do |char|
+#      java.lang.String.new(value.to_java_bytes, @browser.page.getPageEncoding).toCharArray.each do |char|
         @object.type(char)
       end
     end
